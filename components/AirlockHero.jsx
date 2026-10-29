@@ -63,6 +63,9 @@ function clamp(v, min, max) {
   return Math.min(max, Math.max(min, v));
 }
 
+export const GO_HOME_EVENT = "beyondsky:go-home";
+export const GO_TO_SECTION_EVENT = "beyondsky:go-to-section";
+
 export default function AirlockHero({
   id = "hero",
   videoSrc = DEFAULT_VIDEO,
@@ -431,7 +434,11 @@ export default function AirlockHero({
     };
 
     // Touch events for mobile Safari / Chrome
+    const isInteractiveTarget = (e) =>
+      !!(e && e.target && e.target.closest && e.target.closest("a, button, [role='button'], input, textarea, select"));
+
     const onTouchStart = (e) => {
+      if (isInteractiveTarget(e)) return;
       if (e.touches && e.touches[0]) {
         handlePointerDown(e.touches[0].clientY, e.touches[0].clientX);
       }
@@ -450,6 +457,7 @@ export default function AirlockHero({
 
     // Pointer events for modern touch, mouse drag & stylus
     const onPointerDown = (e) => {
+      if (isInteractiveTarget(e)) return;
       handlePointerDown(e.clientY, e.clientX);
     };
 
@@ -524,6 +532,34 @@ export default function AirlockHero({
     };
     window.addEventListener("pageshow", onPageShow);
 
+    // Fired by the header logo / "home" link
+    const onGoHome = () => {
+      cancelAnimationFrame(autoAdvanceRaf);
+      if (reduceMotion) {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        return;
+      }
+      if (!locked) window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      target = 0; // the frame loop eases `shown` back to 0, rewinding the video
+      moved = false;
+      released = false;
+      engageLock();
+    };
+    window.addEventListener(GO_HOME_EVENT, onGoHome);
+
+    // Fired by header section links: finish the intro and jump to that section
+    const onGoToSection = (e) => {
+      const el = document.getElementById(e.detail);
+      if (!el) return;
+      cancelAnimationFrame(autoAdvanceRaf);
+      target = shown = 1;
+      moved = true;
+      paint(1);
+      releaseLock();
+      setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 50);
+    };
+    window.addEventListener(GO_TO_SECTION_EVENT, onGoToSection);
+
     if (!reduceMotion) {
       target = 0;
       shown = 0;
@@ -565,6 +601,8 @@ export default function AirlockHero({
       cancelAnimationFrame(autoAdvanceRaf);
       cancelAnimationFrame(rafId);
       window.removeEventListener("pageshow", onPageShow);
+      window.removeEventListener(GO_HOME_EVENT, onGoHome);
+      window.removeEventListener(GO_TO_SECTION_EVENT, onGoToSection);
       video.removeEventListener("loadeddata", onVideoReady);
       video.removeEventListener("loadedmetadata", onVideoReady);
       video.removeEventListener("canplay", onVideoReady);
