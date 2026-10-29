@@ -7,11 +7,14 @@ export default function AboutIntro() {
           This is Beyond Sky.
         </p>
         <p className="about-intro__statement">
-          Aviation is full of{" "}
-          <span className="about-intro__highlight">stories worth telling.</span>{" "}
-          We research, animate and explain the history, engineering and business
-          behind the aircraft that connect our world, making complex aviation
-          easy to follow and fun to watch.
+          We explore{" "}
+          <span className="about-intro__highlight">
+            the fascinating world of aviation
+          </span>{" "}
+          through well-researched topics covering history, curious facts, and the
+          latest industry trends. Our goal is to bring you engaging narratives and
+          beautiful presentations, with animation and editing that make complex
+          aviation subjects accessible and entertaining.
         </p>
         <a
           className="about-intro__link"
