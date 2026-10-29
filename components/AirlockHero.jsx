@@ -667,7 +667,7 @@ export default function AirlockHero({
         }}
       />
 
-      {/* Title Over Opening Frames: "Beyond Sky" */}
+      {/* Title Over Opening Frames: "Aviation Content, Redefined" */}
       <div
         ref={titleRef}
         className="pointer-events-none absolute inset-0 flex items-center justify-center px-[6%] text-center"
@@ -685,31 +685,22 @@ export default function AirlockHero({
         }}
       >
         <h1
-          className="inline-block font-extrabold leading-none tracking-[-0.02em]"
+          className="inline-block leading-none"
           style={{
             fontFamily: SANS,
-            fontSize: "clamp(34px, 8.5vw, 108px)",
-            fontWeight: 800,
-            lineHeight: 1,
-            letterSpacing: "-0.03em",
+            fontSize: "clamp(34px, 7.5vw, 104px)",
+            fontWeight: 500,
+            lineHeight: 1.05,
+            letterSpacing: "-0.035em",
             color: palette.text,
-            textShadow: "0 4px 35px rgba(0,0,0,0.8), 0 0 35px rgba(37,99,235,0.45)",
+            textWrap: "balance",
+            textShadow: "0 4px 35px rgba(0,0,0,0.8)",
             willChange: "transform, filter, opacity",
           }}
         >
-          {title}
+          Aviation Content,{" "}
+          <span style={{ color: "var(--aviation-yellow)" }}>Redefined</span>
         </h1>
-        <p
-          style={{
-            marginTop: "1rem",
-            fontFamily: "var(--font-cursive)",
-            fontSize: "clamp(1.15rem, 2.8vw, 2rem)",
-            color: "var(--aviation-yellow-light)",
-            textShadow: "0 2px 12px rgba(0,0,0,0.85)",
-          }}
-        >
-          &ldquo;Join us on this journey through the skies&rdquo;
-        </p>
       </div>
 
       {/* Tagline Reveal Over Last Section: "Stories From the Skies" */}
