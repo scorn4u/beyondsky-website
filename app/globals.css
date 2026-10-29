@@ -5318,3 +5318,66 @@ a.dir-item:hover {
 @media (prefers-reduced-motion: reduce) {
   .text-nav__link { transition: none; }
 }
+
+/* ===== "This is Beyond Sky." intro statement ===== */
+.about-intro {
+  position: relative;
+  z-index: 1;
+  background: #000000;
+  color: #ffffff;
+  padding-block: clamp(4.5rem, 11vw, 8rem);
+  padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
+}
+
+.about-intro__inner {
+  max-width: 920px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+  text-align: center;
+}
+
+.about-intro__eyebrow,
+.about-intro__link {
+  font-family: var(--font-tech);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.about-intro__eyebrow {
+  color: #8a8f98;
+}
+
+.about-intro__statement {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: clamp(1.5rem, 3.4vw, 2.6rem);
+  font-weight: 500;
+  line-height: 1.22;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.about-intro__highlight {
+  color: var(--aviation-yellow);
+}
+
+.about-intro__link {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+  text-decoration-thickness: 1px;
+  transition: color 0.2s ease;
+}
+
+.about-intro__link:hover,
+.about-intro__link:focus-visible {
+  color: var(--aviation-yellow);
+  outline: none;
+}

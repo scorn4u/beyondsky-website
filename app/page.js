@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import AirlockHero from "@/components/AirlockHero";
 import SterlingGateKineticNav from "@/components/SterlingGateKineticNav";
+import AboutIntro from "@/components/AboutIntro";
 
 export default function Home() {
   useEffect(() => {
@@ -37,6 +38,7 @@ export default function Home() {
           tagline={null}
           theme="aviation"
         />
+        <AboutIntro />
       </main>
     </>
   );
