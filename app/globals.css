@@ -5513,6 +5513,8 @@ a.dir-item:hover {
   position: relative;
   z-index: 1;
   background: #000000;
+  border-top: 0;
+  margin-top: 0;
   padding-block: 2rem calc(2.5rem + env(safe-area-inset-bottom, 0px));
   padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
   padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
@@ -5527,4 +5529,5 @@ a.dir-item:hover {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #8a8f98;
+  text-align: center;
 }
