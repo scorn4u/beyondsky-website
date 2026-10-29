@@ -10,11 +10,9 @@ export default function AboutIntro() {
           We explore{" "}
           <span className="about-intro__highlight">
             the fascinating world of aviation
-          </span>{" "}
-          through well-researched topics covering history, curious facts, and the
-          latest industry trends. Our goal is to bring you engaging narratives and
-          beautiful presentations, with animation and editing that make complex
-          aviation subjects accessible and entertaining.
+          </span>
+          , from history and curious facts to the latest trends, with engaging
+          stories and animation that make complex topics easy to enjoy.
         </p>
         <a
           className="about-intro__link"

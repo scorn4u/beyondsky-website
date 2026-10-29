@@ -5357,7 +5357,7 @@ a.dir-item:hover {
 .about-intro__statement {
   margin: 0;
   font-family: var(--font-main);
-  font-size: clamp(1.35rem, 3vw, 2.3rem);
+  font-size: clamp(1.4rem, 3.2vw, 2.5rem);
   font-weight: 500;
   line-height: 1.22;
   letter-spacing: -0.035em;
