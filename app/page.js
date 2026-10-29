@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import AirlockHero from "@/components/AirlockHero";
 import SterlingGateKineticNav from "@/components/SterlingGateKineticNav";
-import Contact from "@/components/Contact";
 
 export default function Home() {
   useEffect(() => {
@@ -38,7 +37,6 @@ export default function Home() {
           tagline="Stories From the Skies"
           theme="aviation"
         />
-        <Contact />
       </main>
     </>
   );
