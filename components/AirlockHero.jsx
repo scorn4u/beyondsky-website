@@ -68,7 +68,6 @@ export default function AirlockHero({
   videoSrc = DEFAULT_VIDEO,
   posterSrc = DEFAULT_POSTER,
   title = "Beyond Sky",
-  scrollHint = "SCROLL TO EXPLORE",
   tagline = "Stories From the Skies",
   signature = false,
   scrubDistance = 3200,
@@ -80,7 +79,6 @@ export default function AirlockHero({
   const sectionRef = useRef(null);
   const videoRef = useRef(null);
   const titleRef = useRef(null);
-  const hintRef = useRef(null);
   const taglineRef = useRef(null);
   const barRef = useRef(null);
   const scrimRef = useRef(null);
@@ -200,10 +198,6 @@ export default function AirlockHero({
         titleRef.current.style.transform = `translateY(${(1 - t) * -24}px) scale(${0.96 + t * 0.04})`;
         titleRef.current.style.filter = `blur(${(1 - t) * 10}px)`;
         titleRef.current.style.pointerEvents = t < 0.1 ? "none" : "auto";
-      }
-      if (hintRef.current) {
-        hintRef.current.style.opacity = moved ? "0" : "1";
-        hintRef.current.style.pointerEvents = moved ? "none" : "auto";
       }
       if (taglineRef.current) {
         const t = taglineAlpha;
@@ -801,76 +795,6 @@ export default function AirlockHero({
           </span>
         </div>
       ) : null}
-
-      {/* Interactive Scroll / Swipe / Tap Hint */}
-      <div
-        ref={hintRef}
-        onClick={() => advanceRef.current()}
-        role="button"
-        tabIndex={0}
-        aria-label="Explore Beyond Sky story"
-        className="absolute bottom-[clamp(24px,7vh,52px)] left-1/2 flex -translate-x-1/2 flex-row items-center gap-2.5 cursor-pointer z-20 group whitespace-nowrap"
-        style={{
-          position: "absolute",
-          bottom: "clamp(24px, 7vh, 52px)",
-          left: "50%",
-          transform: "translateX(-50%)",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
-          gap: "0.6rem",
-          whiteSpace: "nowrap",
-          color: palette.muted,
-          fontFamily: SANS,
-          fontSize: "clamp(10px, 1.4vw, 12px)",
-          fontWeight: 700,
-          letterSpacing: "0.22em",
-          transition: "opacity 400ms ease, transform 0.25s ease, background 0.2s ease",
-          zIndex: 20,
-          cursor: "pointer",
-          padding: "0.55rem 1.25rem",
-          borderRadius: "50px",
-          background: "rgba(5, 10, 24, 0.55)",
-          border: "1px solid rgba(255, 255, 255, 0.16)",
-          backdropFilter: "blur(10px)",
-          WebkitBackdropFilter: "blur(10px)",
-          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.4)",
-        }}
-      >
-        <span className="group-hover:text-white transition-colors">
-          {isMobileDevice ? "SWIPE OR TAP TO EXPLORE" : scrollHint}
-        </span>
-        <svg
-          width="13"
-          height="16"
-          viewBox="0 0 14 18"
-          aria-hidden="true"
-          style={{
-            animation: "airlock-bounce 1.6s ease-in-out infinite",
-            flexShrink: 0,
-            display: "inline-block",
-            verticalAlign: "middle",
-          }}
-        >
-          <style>{`
-            @keyframes airlock-bounce {
-              0%, 100% { transform: translateY(0); opacity: 0.7; }
-              50% { transform: translateY(3px); opacity: 1; }
-            }
-            @media (prefers-reduced-motion: reduce) {
-              [style*="airlock-bounce"] { animation: none !important; }
-            }
-          `}</style>
-          <path
-            d="M7 1 L7 17 M2 12 L7 17 L12 12"
-            stroke="currentColor"
-            strokeWidth="1.75"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </div>
 
       {/* Scrub Progress Line */}
       <div
