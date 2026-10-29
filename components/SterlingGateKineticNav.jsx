@@ -28,7 +28,7 @@ export default function SterlingGateKineticNav() {
     <div className="sterling-gate-root">
       <div className={`site-header-wrapper ${isScrolled ? "header-scrolled" : ""}`}>
         <header className="header">
-          <div className="container is--full">
+          <div className="container is--full header-panel">
             <nav className="nav-row" aria-label="Beyond Sky Navigation">
               {/* Brand Logo */}
               <Link href="#hero" className="brand-link" aria-label="Beyond Sky Home">
