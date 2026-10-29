@@ -74,7 +74,6 @@ export default function AirlockHero({
   scrubDistance = 3200,
   holdDistance = 1100,
   theme = "aviation",
-  skipLabel = "Skip intro ↓",
   className,
   style,
 }) {
@@ -872,34 +871,6 @@ export default function AirlockHero({
           />
         </svg>
       </div>
-
-      {/* Skip Intro button */}
-      <button
-        type="button"
-        onClick={() => releaseRef.current()}
-        className="absolute left-1/2 top-20 z-20 -translate-x-1/2 rounded-full px-4 py-2 text-xs font-semibold opacity-75 hover:opacity-100 transition-opacity"
-        style={{
-          position: "absolute",
-          left: "50%",
-          top: "5rem",
-          transform: "translateX(-50%)",
-          zIndex: 20,
-          borderRadius: "50px",
-          padding: "0.5rem 1.15rem",
-          fontSize: "0.75rem",
-          fontWeight: 700,
-          fontFamily: SANS,
-          color: palette.text,
-          background: "rgba(5, 10, 24, 0.75)",
-          border: "1px solid rgba(59, 130, 246, 0.35)",
-          letterSpacing: "0.08em",
-          cursor: "pointer",
-          backdropFilter: "blur(8px)",
-          WebkitBackdropFilter: "blur(8px)",
-        }}
-      >
-        {skipLabel}
-      </button>
 
       {/* Scrub Progress Line */}
       <div
