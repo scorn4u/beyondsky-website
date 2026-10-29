@@ -5397,14 +5397,14 @@ a.dir-item:hover {
   pointer-events: auto;
   padding-block: 0.9rem;
   border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   background:
-    radial-gradient(ellipse 22% 140% at 24% 0%, rgba(255, 255, 255, 0.13), transparent 70%),
-    radial-gradient(ellipse 20% 140% at 58% 0%, rgba(255, 255, 255, 0.09), transparent 70%),
-    linear-gradient(180deg, rgba(30, 30, 30, 0.94), rgba(16, 16, 16, 0.94));
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+    radial-gradient(ellipse 22% 140% at 24% 0%, rgba(255, 255, 255, 0.07), transparent 70%),
+    radial-gradient(ellipse 20% 140% at 58% 0%, rgba(255, 255, 255, 0.05), transparent 70%),
+    linear-gradient(180deg, rgba(20, 20, 24, 0.32), rgba(10, 10, 14, 0.38));
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(22px) saturate(140%);
+  -webkit-backdrop-filter: blur(22px) saturate(140%);
 }
 
 .header-panel .text-nav {
