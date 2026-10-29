@@ -34,7 +34,8 @@ export default function Home() {
       <main id="main-content">
         <AirlockHero
           title="Beyond Sky"
-          tagline="Stories From the Skies"
+          tagline="20 Million Views in the Last Year"
+          taglineHighlight="20 Million"
           theme="aviation"
         />
       </main>

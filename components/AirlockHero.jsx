@@ -69,6 +69,7 @@ export default function AirlockHero({
   posterSrc = DEFAULT_POSTER,
   title = "Beyond Sky",
   tagline = "Stories From the Skies",
+  taglineHighlight = "the Skies",
   signature = false,
   scrubDistance = 3200,
   holdDistance = 1100,
@@ -703,7 +704,7 @@ export default function AirlockHero({
         </h1>
       </div>
 
-      {/* Tagline Reveal Over Last Section: "Stories From the Skies" */}
+      {/* Tagline Reveal Over Last Section (taglineHighlight gets the hand-drawn circle) */}
       {tagline ? (
         <div
           ref={taglineRef}
@@ -752,20 +753,20 @@ export default function AirlockHero({
               maxWidth: "850px",
             }}
           >
-            {typeof tagline === "string" && tagline.includes("the Skies") ? (
+            {typeof tagline === "string" && taglineHighlight && tagline.includes(taglineHighlight) ? (
               <>
-                {tagline.replace("the Skies", "")}
+                {tagline.split(taglineHighlight)[0]}
                 <span
                   className="highlight-circle"
                   style={{
                     display: "inline-block",
                     whiteSpace: "nowrap",
-                    marginLeft: "0.15em",
                     padding: "0 0.15em",
                   }}
                 >
-                  the Skies
+                  {taglineHighlight}
                 </span>
+                {tagline.split(taglineHighlight).slice(1).join(taglineHighlight)}
               </>
             ) : (
               tagline
