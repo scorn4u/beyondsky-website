@@ -1,8 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { AnimatePresence } from "framer-motion";
-import RunwayLoader from "@/components/RunwayLoader";
+import { useEffect } from "react";
 import AirlockHero from "@/components/AirlockHero";
 import SterlingGateKineticNav from "@/components/SterlingGateKineticNav";
 import WorkPortfolio from "@/components/WorkPortfolio";
@@ -10,8 +8,6 @@ import SpotifySection from "@/components/SpotifySection";
 import Contact from "@/components/Contact";
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-
   useEffect(() => {
     // Disable automatic browser scroll restoration on reload
     if ("scrollRestoration" in window.history) {
@@ -37,17 +33,6 @@ export default function Home() {
 
   return (
     <>
-      <AnimatePresence>
-        {isLoading && (
-          <RunwayLoader
-            onComplete={() => {
-              setIsLoading(false);
-              window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-            }}
-          />
-        )}
-      </AnimatePresence>
-
       <SterlingGateKineticNav />
       <main id="main-content">
         <AirlockHero
