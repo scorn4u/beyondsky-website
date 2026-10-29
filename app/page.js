@@ -3,8 +3,6 @@
 import { useEffect } from "react";
 import AirlockHero from "@/components/AirlockHero";
 import SterlingGateKineticNav from "@/components/SterlingGateKineticNav";
-import WorkPortfolio from "@/components/WorkPortfolio";
-import SpotifySection from "@/components/SpotifySection";
 import Contact from "@/components/Contact";
 
 export default function Home() {
@@ -40,8 +38,6 @@ export default function Home() {
           tagline="Stories From the Skies"
           theme="aviation"
         />
-        <WorkPortfolio />
-        <SpotifySection />
         <Contact />
       </main>
     </>
