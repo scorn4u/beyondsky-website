@@ -5,6 +5,7 @@ import AirlockHero from "@/components/AirlockHero";
 import SterlingGateKineticNav from "@/components/SterlingGateKineticNav";
 import AboutIntro from "@/components/AboutIntro";
 import JoinTeam from "@/components/JoinTeam";
+import SiteFooter from "@/components/SiteFooter";
 
 export default function Home() {
   useEffect(() => {
@@ -42,6 +43,7 @@ export default function Home() {
         <AboutIntro />
         <JoinTeam />
       </main>
+      <SiteFooter />
     </>
   );
 }

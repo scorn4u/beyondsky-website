@@ -5507,3 +5507,24 @@ a.dir-item:hover {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* ===== Minimal footer ===== */
+.site-footer {
+  position: relative;
+  z-index: 1;
+  background: #000000;
+  padding-block: 2rem calc(2.5rem + env(safe-area-inset-bottom, 0px));
+  padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
+}
+
+.site-footer__inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  font-family: var(--font-tech);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a8f98;
+}
