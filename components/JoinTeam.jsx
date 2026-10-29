@@ -7,8 +7,8 @@ export default function JoinTeam() {
       <div className="join-team__inner">
         <div className="join-team__media">
           <Image
-            src="/assets/team_marcus.jpg"
-            alt="A Beyond Sky editor working on an aviation video at his desk"
+            src="/assets/join_team_desk.jpg"
+            alt="Overhead view of hands at a keyboard and trackpad on a wooden desk, lit by the monitor"
             fill
             sizes="(max-width: 860px) 100vw, 48vw"
             className="join-team__img"
