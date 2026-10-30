@@ -5695,13 +5695,21 @@ a.dir-item:hover {
   text-transform: none;
   text-decoration: none;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 -3px 0 rgba(0, 0, 0, 0.12);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
 
-.a380-cta:hover,
 .a380-cta:focus-visible {
-  transform: translateY(-2px);
-  outline: none;
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* desktop only (real mouse hover): turn YouTube red */
+@media (hover: hover) and (pointer: fine) {
+  .a380-cta:hover {
+    background: #ff0000;
+    color: #ffffff;
+    transform: translateY(-2px);
+  }
 }
 
 .a380-continue {

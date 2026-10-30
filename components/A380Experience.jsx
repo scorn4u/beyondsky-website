@@ -415,7 +415,7 @@ export default function A380Experience() {
         <div className="a380-finale" ref={finaleRef}>
           <a
             className="a380-cta"
-            href="https://www.youtube.com/@BeyondSky-m5e"
+            href="https://www.youtube.com/@BeyondSky-m5e/videos"
             target="_blank"
             rel="noopener noreferrer"
           >
