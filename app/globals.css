@@ -5627,8 +5627,10 @@ a.dir-item:hover {
 
 .a380-headline {
   position: absolute;
-  left: max(1.25rem, env(safe-area-inset-left, 0px));
-  top: 24%;
+  /* vertically centred, set in a little from the left edge */
+  left: max(clamp(1.25rem, 7vw, 8rem), env(safe-area-inset-left, 0px));
+  top: 50%;
+  translate: 0 -50%;
   will-change: transform, opacity;
 }
 
@@ -5720,7 +5722,9 @@ a.dir-item:hover {
 
 @media (max-width: 640px) {
   .a380-headline {
+    /* phones: keep it above the plane */
     top: 18%;
+    translate: none;
   }
   .a380-title {
     font-size: clamp(2.2rem, 11.5vw, 5rem);
