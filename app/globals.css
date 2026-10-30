@@ -5531,3 +5531,234 @@ a.dir-item:hover {
   color: #8a8f98;
   text-align: center;
 }
+
+/* ===== /experience: "Fly Beyond" A380 scroll intro ===== */
+.a380-page {
+  --a380-blue: #3746fb;
+  --a380-ink: #ffffff;
+  --a380-muted: rgba(255, 255, 255, 0.72);
+  --a380-display: 'Anton', Impact, 'Arial Narrow', sans-serif;
+  position: relative;
+  background: var(--a380-blue);
+  color: var(--a380-ink);
+}
+
+.a380-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: var(--a380-blue);
+}
+
+.a380-stage canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.a380-ui {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  font-family: var(--font-tech);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.a380-corner {
+  position: absolute;
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.a380-corner--tl {
+  top: calc(1.25rem + env(safe-area-inset-top, 0px));
+  left: max(1.25rem, env(safe-area-inset-left, 0px));
+}
+
+.a380-slash {
+  color: var(--a380-muted);
+}
+
+.a380-corner--tr {
+  top: calc(1.25rem + env(safe-area-inset-top, 0px));
+  right: max(1.25rem, env(safe-area-inset-right, 0px));
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.35rem;
+}
+
+.a380-home {
+  pointer-events: auto;
+  color: var(--a380-ink);
+  text-decoration: none;
+  margin-bottom: 0.35rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.a380-home:hover,
+.a380-home:focus-visible {
+  border-bottom-color: #ffffff;
+  outline: none;
+}
+
+.a380-hud {
+  color: var(--a380-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.a380-corner--bl {
+  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  left: max(1.25rem, env(safe-area-inset-left, 0px));
+}
+
+.a380-corner--br {
+  bottom: calc(1.1rem + env(safe-area-inset-bottom, 0px));
+  right: max(1.25rem, env(safe-area-inset-right, 0px));
+}
+
+.a380-restart {
+  pointer-events: auto;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: var(--a380-ink);
+  background: rgba(10, 14, 60, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 999px;
+  padding: 0.5rem 0.95rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.a380-restart:hover,
+.a380-restart:focus-visible {
+  background: rgba(255, 255, 255, 0.16);
+  outline: none;
+}
+
+.a380-progress {
+  position: absolute;
+  right: max(0.6rem, env(safe-area-inset-right, 0px));
+  top: 28%;
+  height: 44%;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.a380-progress__bar {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  transform-origin: top;
+  transform: scaleY(0);
+}
+
+.a380-headline {
+  position: absolute;
+  left: max(1.25rem, env(safe-area-inset-left, 0px));
+  top: 22%;
+  will-change: transform, opacity;
+}
+
+.a380-eyebrow {
+  margin: 0 0 0.9rem 0.25rem;
+  color: var(--a380-ink);
+}
+
+.a380-title {
+  margin: 0;
+  font-family: var(--a380-display);
+  font-weight: 400;
+  font-size: clamp(5.5rem, 16vw, 15rem);
+  line-height: 0.86;
+  letter-spacing: -0.005em;
+  text-transform: uppercase;
+}
+
+.a380-title span {
+  display: block;
+  color: transparent;
+  /* solid white that dissolves into a halftone dot screen toward the bottom */
+  background:
+    linear-gradient(180deg, #ffffff 0%, #ffffff 34%, rgba(255, 255, 255, 0) 92%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.95) 38%, transparent 44%) 0 0 / 5px 5px;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.a380-title span + span {
+  padding-left: 0.42em;
+}
+
+.a380-finale {
+  position: absolute;
+  left: 50%;
+  bottom: 18%;
+  translate: -50% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.a380-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  min-width: 17rem;
+  padding: 0.95rem 1.3rem 0.95rem 1.5rem;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #10133a;
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-transform: none;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(10, 14, 60, 0.35), inset 0 -3px 0 rgba(16, 19, 58, 0.12);
+  transition: transform 0.2s ease;
+}
+
+.a380-cta:hover,
+.a380-cta:focus-visible {
+  transform: translateY(-2px);
+  outline: none;
+}
+
+.a380-enter {
+  color: var(--a380-ink);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.a380-enter:hover,
+.a380-enter:focus-visible {
+  border-bottom-color: #ffffff;
+  outline: none;
+}
+
+.a380-scroll {
+  position: relative;
+  z-index: 0;
+}
+
+@media (max-width: 640px) {
+  .a380-headline {
+    top: 16%;
+  }
+  .a380-title {
+    font-size: clamp(3.6rem, 19vw, 7rem);
+  }
+  .a380-corner--tr .a380-hud {
+    display: none;
+  }
+}
