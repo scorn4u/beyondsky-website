@@ -5722,11 +5722,18 @@ a.dir-item:hover {
 
 @media (max-width: 640px) {
   .a380-headline {
-    /* phones: keep it above the plane */
-    top: 18%;
+    /* phones: centred across the screen, above the plane */
+    left: max(1rem, env(safe-area-inset-left, 0px));
+    right: max(1rem, env(safe-area-inset-right, 0px));
+    top: 25%;
     translate: none;
+    text-align: center;
   }
   .a380-title {
-    font-size: clamp(2.2rem, 11.5vw, 5rem);
+    font-size: clamp(2.4rem, 14vw, 5.5rem);
+    line-height: 0.92;
+  }
+  .a380-title span:nth-child(2) {
+    padding-left: 0;
   }
 }
