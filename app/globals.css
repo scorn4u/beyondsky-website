@@ -5653,14 +5653,15 @@ a.dir-item:hover {
   margin: 0;
   font-family: var(--a380-display);
   font-weight: 400;
-  font-size: clamp(5.5rem, 16vw, 15rem);
-  line-height: 0.86;
+  font-size: clamp(4.5rem, 11.5vw, 11.5rem);
+  line-height: 0.88;
   letter-spacing: -0.005em;
   text-transform: uppercase;
 }
 
 .a380-title span {
   display: block;
+  white-space: nowrap;
   color: transparent;
   /* solid white that dissolves into a halftone dot screen toward the bottom */
   background:
@@ -5670,8 +5671,12 @@ a.dir-item:hover {
   background-clip: text;
 }
 
-.a380-title span + span {
+.a380-title span:nth-child(2) {
   padding-left: 0.42em;
+}
+
+.a380-title span:nth-child(3) {
+  padding-left: 0.2em;
 }
 
 .a380-finale {
@@ -5734,7 +5739,7 @@ a.dir-item:hover {
     top: 16%;
   }
   .a380-title {
-    font-size: clamp(3.6rem, 19vw, 7rem);
+    font-size: clamp(3.4rem, 18vw, 6.5rem);
   }
   .a380-corner--hud {
     display: none;

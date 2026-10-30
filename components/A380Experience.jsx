@@ -408,10 +408,10 @@ export default function A380Experience() {
         </div>
 
         <div className="a380-headline" ref={headlineRef}>
-          <p className="a380-eyebrow">Stories from the skies</p>
           <h1 className="a380-title">
-            <span>Beyond</span>
-            <span>Sky</span>
+            <span>Stories</span>
+            <span>from the</span>
+            <span>skies</span>
           </h1>
         </div>
 
