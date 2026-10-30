@@ -5,14 +5,19 @@ import * as THREE from "three";
 import { buildA380, hexToRgb } from "@/components/a380/buildA380";
 import { buildCards, fontStacks } from "@/components/a380/cards";
 import { buildBlockLetters } from "@/components/a380/blockLetters";
+import SterlingGateKineticNav from "@/components/SterlingGateKineticNav";
+import AboutIntro from "@/components/AboutIntro";
+import JoinTeam from "@/components/JoinTeam";
+import SiteFooter from "@/components/SiteFooter";
 
 /*
- * "Fly Beyond": a scroll-driven 3D intro. A wireframe Airbus A380 sweeps past,
- * drops onto a floating runway past Beyond Sky cards, climbs away, and the
- * scene ends on "BEYOND SKY" built from thousands of cubes.
+ * Scroll-driven 3D intro. A wireframe Airbus A380 sweeps past, drops onto a
+ * floating runway past Beyond Sky cards, climbs away, and the scene ends on
+ * "BEYOND SKY" built from thousands of cubes. The homepage sections then
+ * scroll up over it.
  */
 
-const BRAND_BLUE = "#3746fb";
+const BG = "#000000";
 const SCROLL_SCREENS = 7; // page height in viewport heights
 const LETTERS_POS = new THREE.Vector3(0, 38, -650);
 const FINAL_CAM_DIST = 94;
@@ -88,7 +93,7 @@ function runwayTexture() {
   c.width = 256;
   c.height = 512;
   const ctx = c.getContext("2d");
-  ctx.fillStyle = "#060608";
+  ctx.fillStyle = "#16171c";
   ctx.fillRect(0, 0, 256, 512);
   ctx.fillStyle = "#e9ecf2";
   ctx.fillRect(10, 0, 5, 512);
@@ -102,7 +107,7 @@ function thresholdTexture(font) {
   c.width = 512;
   c.height = 640;
   const ctx = c.getContext("2d");
-  ctx.fillStyle = "#060608";
+  ctx.fillStyle = "#16171c";
   ctx.fillRect(0, 0, 512, 640);
   ctx.fillStyle = "#e9ecf2";
   ctx.fillRect(20, 0, 10, 640);
@@ -140,6 +145,7 @@ export default function A380Experience() {
   const altRef = useRef(null);
   const barRef = useRef(null);
   const finaleRef = useRef(null);
+  const spacerRef = useRef(null);
 
   useEffect(() => {
     const stage = stageRef.current;
@@ -150,11 +156,11 @@ export default function A380Experience() {
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
-    renderer.setClearColor(new THREE.Color(BRAND_BLUE));
+    renderer.setClearColor(new THREE.Color(BG));
     stage.appendChild(renderer.domElement);
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(new THREE.Color(BRAND_BLUE), 140, 420);
+    scene.fog = new THREE.Fog(new THREE.Color(BG), 140, 420);
     const camera = new THREE.PerspectiveCamera(38, 1, 0.5, 2500);
 
     scene.add(new THREE.AmbientLight(0xffffff, 0.9));
@@ -162,7 +168,7 @@ export default function A380Experience() {
     sun.position.set(-0.6, 1, 1.2);
     scene.add(sun);
 
-    const fog = hexToRgb(BRAND_BLUE);
+    const fog = hexToRgb(BG);
     const plane = buildA380(fog);
     scene.add(plane);
 
@@ -282,7 +288,8 @@ export default function A380Experience() {
     let target = 0;
     let shown = 0;
     const onScroll = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const spacer = spacerRef.current;
+      const max = spacer ? spacer.offsetHeight - window.innerHeight : 0;
       target = max > 0 ? clamp01(window.scrollY / max) : 0;
     };
     onScroll();
@@ -382,6 +389,7 @@ export default function A380Experience() {
 
   return (
     <div className="a380-page">
+      <SterlingGateKineticNav />
       {/* Anton is only used on this page, so it is loaded here rather than site-wide */}
       {/* eslint-disable-next-line @next/next/no-page-custom-font */}
       <link
@@ -392,18 +400,7 @@ export default function A380Experience() {
       <div className="a380-stage" ref={stageRef} aria-hidden="true" />
 
       <div className="a380-ui">
-        <div className="a380-corner a380-corner--tl">
-          <span>Beyond Sky</span>
-          <span className="a380-slash">/</span>
-          <span>Fly Beyond</span>
-        </div>
-
-        <div className="a380-corner a380-corner--tr">
-          {/* plain link on purpose: a full page load cleanly tears down the 3D scene */}
-          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a href="/" className="a380-home">
-            ← Home
-          </a>
+        <div className="a380-corner a380-corner--hud">
           <span className="a380-hud">Airbus A380</span>
           <span className="a380-hud" ref={altRef}>
             ALT 12,800 FT
@@ -413,8 +410,8 @@ export default function A380Experience() {
         <div className="a380-headline" ref={headlineRef}>
           <p className="a380-eyebrow">Stories from the skies</p>
           <h1 className="a380-title">
-            <span>Fly</span>
             <span>Beyond</span>
+            <span>Sky</span>
           </h1>
         </div>
 
@@ -442,14 +439,22 @@ export default function A380Experience() {
             <span>Watch on YouTube</span>
             <span aria-hidden="true">↗</span>
           </a>
-          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-          <a className="a380-enter" href="/">
-            Enter the site →
-          </a>
+          <span className="a380-continue">↓ Keep scrolling</span>
         </div>
       </div>
 
-      <div className="a380-scroll" style={{ height: `${SCROLL_SCREENS * 100}vh` }} />
+      <div
+        className="a380-scroll"
+        ref={spacerRef}
+        style={{ height: `${SCROLL_SCREENS * 100}vh` }}
+      />
+
+      {/* the regular homepage continues after the flight */}
+      <div className="a380-after">
+        <AboutIntro />
+        <JoinTeam />
+        <SiteFooter />
+      </div>
     </div>
   );
 }

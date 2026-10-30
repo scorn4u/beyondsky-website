@@ -29,7 +29,9 @@ export default function SterlingGateKineticNav() {
   const goHome = (e) => {
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return; // let "open in new tab" work
     e.preventDefault();
-    window.dispatchEvent(new Event(GO_HOME_EVENT));
+    // the video intro handles this itself (and cancels the event); otherwise just go to the top
+    const handled = !window.dispatchEvent(new Event(GO_HOME_EVENT, { cancelable: true }));
+    if (!handled) window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   // Section links finish the intro and scroll to the section (if it exists)
@@ -37,7 +39,10 @@ export default function SterlingGateKineticNav() {
     const id = e.currentTarget.getAttribute("href").slice(1);
     if (!document.getElementById(id)) return;
     e.preventDefault();
-    window.dispatchEvent(new CustomEvent(GO_TO_SECTION_EVENT, { detail: id }));
+    const handled = !window.dispatchEvent(
+      new CustomEvent(GO_TO_SECTION_EVENT, { detail: id, cancelable: true })
+    );
+    if (!handled) document.getElementById(id).scrollIntoView({ behavior: "smooth" });
   };
 
   return (

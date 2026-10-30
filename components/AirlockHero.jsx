@@ -533,7 +533,8 @@ export default function AirlockHero({
     window.addEventListener("pageshow", onPageShow);
 
     // Fired by the header logo / "home" link
-    const onGoHome = () => {
+    const onGoHome = (e) => {
+      e.preventDefault(); // tells the header this was handled here
       cancelAnimationFrame(autoAdvanceRaf);
       if (reduceMotion) {
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -551,6 +552,7 @@ export default function AirlockHero({
     const onGoToSection = (e) => {
       const el = document.getElementById(e.detail);
       if (!el) return;
+      e.preventDefault(); // tells the header this was handled here
       cancelAnimationFrame(autoAdvanceRaf);
       target = shown = 1;
       moved = true;

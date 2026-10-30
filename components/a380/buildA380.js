@@ -76,8 +76,9 @@ export function createWireMaterial({ mode, density, fogColor }) {
         float lambert = max(dot(n, lightDir), 0.0);
         float rim = pow(1.0 - max(dot(n, vec3(0.0, 0.0, 1.0)), 0.0), 3.0);
 
-        vec3 skin = vec3(0.025) + vec3(0.09) * lambert + vec3(0.05) * rim;
-        vec3 line = vec3(mix(0.55, 1.0, lambert * 0.75 + 0.25));
+        // light "clay model" skin with dark panel lines, made for a black background
+        vec3 skin = vec3(0.50, 0.51, 0.54) + vec3(0.42) * lambert + vec3(0.10) * rim;
+        vec3 line = vec3(0.07, 0.07, 0.09) + vec3(0.06) * lambert;
         vec3 color = mix(skin, line, gridLine(c));
 
         float fogF = smoothstep(uFogNear, uFogFar, vDepth);

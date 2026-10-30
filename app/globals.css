@@ -5532,14 +5532,14 @@ a.dir-item:hover {
   text-align: center;
 }
 
-/* ===== /experience: "Fly Beyond" A380 scroll intro ===== */
+/* ===== /experience: A380 scroll intro ===== */
 .a380-page {
-  --a380-blue: #3746fb;
+  --a380-bg: #000000;
   --a380-ink: #ffffff;
   --a380-muted: rgba(255, 255, 255, 0.72);
   --a380-display: 'Anton', Impact, 'Arial Narrow', sans-serif;
   position: relative;
-  background: var(--a380-blue);
+  background: var(--a380-bg);
   color: var(--a380-ink);
 }
 
@@ -5547,7 +5547,7 @@ a.dir-item:hover {
   position: fixed;
   inset: 0;
   z-index: 1;
-  background: var(--a380-blue);
+  background: var(--a380-bg);
 }
 
 .a380-stage canvas {
@@ -5575,35 +5575,12 @@ a.dir-item:hover {
   align-items: center;
 }
 
-.a380-corner--tl {
-  top: calc(1.25rem + env(safe-area-inset-top, 0px));
+.a380-corner--hud {
+  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
   left: max(1.25rem, env(safe-area-inset-left, 0px));
-}
-
-.a380-slash {
-  color: var(--a380-muted);
-}
-
-.a380-corner--tr {
-  top: calc(1.25rem + env(safe-area-inset-top, 0px));
-  right: max(1.25rem, env(safe-area-inset-right, 0px));
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 0.35rem;
-}
-
-.a380-home {
-  pointer-events: auto;
-  color: var(--a380-ink);
-  text-decoration: none;
-  margin-bottom: 0.35rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.a380-home:hover,
-.a380-home:focus-visible {
-  border-bottom-color: #ffffff;
-  outline: none;
 }
 
 .a380-hud {
@@ -5613,7 +5590,9 @@ a.dir-item:hover {
 
 .a380-corner--bl {
   bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
-  left: max(1.25rem, env(safe-area-inset-left, 0px));
+  left: 50%;
+  translate: -50% 0;
+  white-space: nowrap;
 }
 
 .a380-corner--br {
@@ -5627,8 +5606,8 @@ a.dir-item:hover {
   letter-spacing: inherit;
   text-transform: inherit;
   color: var(--a380-ink);
-  background: rgba(10, 14, 60, 0.28);
-  border: 1px solid rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.35);
   border-radius: 999px;
   padding: 0.5rem 0.95rem;
   cursor: pointer;
@@ -5661,13 +5640,13 @@ a.dir-item:hover {
 .a380-headline {
   position: absolute;
   left: max(1.25rem, env(safe-area-inset-left, 0px));
-  top: 22%;
+  top: 24%;
   will-change: transform, opacity;
 }
 
 .a380-eyebrow {
   margin: 0 0 0.9rem 0.25rem;
-  color: var(--a380-ink);
+  color: var(--aviation-yellow);
 }
 
 .a380-title {
@@ -5717,14 +5696,14 @@ a.dir-item:hover {
   padding: 0.95rem 1.3rem 0.95rem 1.5rem;
   border-radius: 999px;
   background: #ffffff;
-  color: #10133a;
+  color: #0b0b0f;
   font-family: var(--font-main);
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0;
   text-transform: none;
   text-decoration: none;
-  box-shadow: 0 10px 30px rgba(10, 14, 60, 0.35), inset 0 -3px 0 rgba(16, 19, 58, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 -3px 0 rgba(0, 0, 0, 0.12);
   transition: transform 0.2s ease;
 }
 
@@ -5734,16 +5713,15 @@ a.dir-item:hover {
   outline: none;
 }
 
-.a380-enter {
-  color: var(--a380-ink);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+.a380-continue {
+  color: var(--a380-muted);
 }
 
-.a380-enter:hover,
-.a380-enter:focus-visible {
-  border-bottom-color: #ffffff;
-  outline: none;
+/* homepage sections that scroll up over the finished flight */
+.a380-after {
+  position: relative;
+  z-index: 3;
+  background: #000000;
 }
 
 .a380-scroll {
@@ -5758,7 +5736,11 @@ a.dir-item:hover {
   .a380-title {
     font-size: clamp(3.6rem, 19vw, 7rem);
   }
-  .a380-corner--tr .a380-hud {
+  .a380-corner--hud {
     display: none;
+  }
+  .a380-corner--bl {
+    left: max(1.25rem, env(safe-area-inset-left, 0px));
+    translate: none;
   }
 }

@@ -52,7 +52,7 @@ function cardBase(h, { radius = 56 } = {}) {
   ctx.fillStyle = g;
   ctx.fill();
   ctx.lineWidth = 4;
-  ctx.strokeStyle = "rgba(255,255,255,0.14)";
+  ctx.strokeStyle = "rgba(255,255,255,0.22)";
   ctx.stroke();
   return { c, ctx };
 }
