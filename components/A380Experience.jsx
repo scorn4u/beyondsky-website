@@ -142,7 +142,6 @@ export default function A380Experience() {
   const stageRef = useRef(null);
   const headlineRef = useRef(null);
   const hintRef = useRef(null);
-  const altRef = useRef(null);
   const barRef = useRef(null);
   const finaleRef = useRef(null);
   const spacerRef = useRef(null);
@@ -299,7 +298,6 @@ export default function A380Experience() {
     const camPos = new THREE.Vector3();
     const camTarget = new THREE.Vector3();
     const planePos = new THREE.Vector3();
-    let lastAlt = "";
     let raf = 0;
 
     const frame = () => {
@@ -355,13 +353,6 @@ export default function A380Experience() {
         fin.style.transform = `translateY(${16 * (1 - o)}px)`;
         fin.style.pointerEvents = o > 0.5 ? "auto" : "none";
       }
-      if (altRef.current) {
-        const alt = Math.max(0, Math.round((planePos.y * 220) / 100) * 100).toLocaleString("en-US");
-        if (alt !== lastAlt) {
-          altRef.current.textContent = `ALT ${alt} FT`;
-          lastAlt = alt;
-        }
-      }
 
       renderer.render(scene, camera);
     };
@@ -400,18 +391,10 @@ export default function A380Experience() {
       <div className="a380-stage" ref={stageRef} aria-hidden="true" />
 
       <div className="a380-ui">
-        <div className="a380-corner a380-corner--hud">
-          <span className="a380-hud">Airbus A380</span>
-          <span className="a380-hud" ref={altRef}>
-            ALT 12,800 FT
-          </span>
-        </div>
-
         <div className="a380-headline" ref={headlineRef}>
           <h1 className="a380-title">
-            <span>Stories</span>
-            <span>from the</span>
-            <span>skies</span>
+            <span>Stories from</span>
+            <span>the skies</span>
           </h1>
         </div>
 

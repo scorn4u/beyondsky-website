@@ -5575,23 +5575,11 @@ a.dir-item:hover {
   align-items: center;
 }
 
-.a380-corner--hud {
-  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
-  left: max(1.25rem, env(safe-area-inset-left, 0px));
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.35rem;
-}
 
-.a380-hud {
-  color: var(--a380-muted);
-  font-variant-numeric: tabular-nums;
-}
 
 .a380-corner--bl {
   bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
-  left: 50%;
-  translate: -50% 0;
+  left: max(1.25rem, env(safe-area-inset-left, 0px));
   white-space: nowrap;
 }
 
@@ -5653,8 +5641,8 @@ a.dir-item:hover {
   margin: 0;
   font-family: var(--a380-display);
   font-weight: 400;
-  font-size: clamp(4.5rem, 11.5vw, 11.5rem);
-  line-height: 0.88;
+  font-size: clamp(3.4rem, 8vw, 8rem);
+  line-height: 0.9;
   letter-spacing: -0.005em;
   text-transform: uppercase;
 }
@@ -5673,10 +5661,6 @@ a.dir-item:hover {
 
 .a380-title span:nth-child(2) {
   padding-left: 0.42em;
-}
-
-.a380-title span:nth-child(3) {
-  padding-left: 0.2em;
 }
 
 .a380-finale {
@@ -5736,16 +5720,9 @@ a.dir-item:hover {
 
 @media (max-width: 640px) {
   .a380-headline {
-    top: 16%;
+    top: 18%;
   }
   .a380-title {
-    font-size: clamp(3.4rem, 18vw, 6.5rem);
-  }
-  .a380-corner--hud {
-    display: none;
-  }
-  .a380-corner--bl {
-    left: max(1.25rem, env(safe-area-inset-left, 0px));
-    translate: none;
+    font-size: clamp(2.2rem, 11.5vw, 5rem);
   }
 }
