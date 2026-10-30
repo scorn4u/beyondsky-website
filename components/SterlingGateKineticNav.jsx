@@ -109,11 +109,12 @@ export default function SterlingGateKineticNav() {
               >
                 <span aria-hidden="true" />
                 <span aria-hidden="true" />
+                <span aria-hidden="true" />
               </button>
             </nav>
 
             <ul className="mobile-nav" id="mobile-nav" hidden={!menuOpen}>
-              {NAV_LINKS.map((link, i) => (
+              {NAV_LINKS.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
@@ -121,7 +122,6 @@ export default function SterlingGateKineticNav() {
                     onClick={link.home ? goHome : goToSection}
                   >
                     {link.label}
-                    <span className="mobile-nav__punct">{i < NAV_LINKS.length - 1 ? "," : "."}</span>
                   </a>
                 </li>
               ))}

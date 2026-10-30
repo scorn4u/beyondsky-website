@@ -5743,30 +5743,34 @@ a.dir-item:hover {
   display: none;
   pointer-events: auto;
   position: relative;
-  width: 44px;
-  height: 44px;
-  margin-right: -6px;
+  width: 40px;
+  height: 40px;
+  margin-right: -8px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 10px;
   background: transparent;
   cursor: pointer;
 }
 
+/* three short lines that fold into an X */
 .nav-burger span {
   position: absolute;
-  left: 11px;
-  right: 11px;
+  left: 50%;
+  width: 18px;
   height: 2px;
+  margin-left: -9px;
   border-radius: 2px;
   background: #ffffff;
-  transition: transform 0.25s ease, top 0.25s ease;
+  transition: transform 0.25s ease, top 0.25s ease, opacity 0.2s ease;
 }
 
-.nav-burger span:first-child { top: 17px; }
-.nav-burger span:last-child { top: 25px; }
+.nav-burger span:nth-child(1) { top: 13px; }
+.nav-burger span:nth-child(2) { top: 19px; }
+.nav-burger span:nth-child(3) { top: 25px; }
 
-.is-menu-open .nav-burger span:first-child { top: 21px; transform: rotate(45deg); }
-.is-menu-open .nav-burger span:last-child { top: 21px; transform: rotate(-45deg); }
+.is-menu-open .nav-burger span:nth-child(1) { top: 19px; transform: rotate(45deg); }
+.is-menu-open .nav-burger span:nth-child(2) { opacity: 0; }
+.is-menu-open .nav-burger span:nth-child(3) { top: 19px; transform: rotate(-45deg); }
 
 .nav-burger:focus-visible {
   outline: 2px solid rgba(255, 255, 255, 0.6);
@@ -5776,21 +5780,21 @@ a.dir-item:hover {
 .mobile-nav {
   list-style: none;
   margin: 0;
-  padding: 0.75rem 0 0.4rem;
+  padding: 0.85rem 0 0.35rem;
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
+  gap: 0.1rem;
   pointer-events: auto;
 }
-
 .mobile-nav__link {
   display: block;
-  padding: 0.35rem 0.1rem;
+  padding: 0.3rem 0;
   font-family: var(--font-main);
-  font-size: 1.9rem;
-  font-weight: 400;
-  letter-spacing: -0.035em;
-  line-height: 1.15;
+  font-size: 1.45rem;
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+  text-transform: capitalize;
   color: #ffffff;
   text-decoration: none;
 }
@@ -5801,13 +5805,26 @@ a.dir-item:hover {
   outline: none;
 }
 
-.mobile-nav__punct {
-  color: rgba(255, 255, 255, 0.45);
-}
-
 @media (max-width: 640px) {
   .header-panel .text-nav { display: none; }
   .nav-burger { display: block; }
+
+  /* floating bar inset from the screen edges, like an iOS sheet */
+  .site-header-wrapper .header,
+  .site-header-wrapper.header-scrolled .header {
+    padding: calc(12px + env(safe-area-inset-top, 0px)) max(14px, env(safe-area-inset-right, 0px)) 0 max(14px, env(safe-area-inset-left, 0px));
+  }
+  .container.is--full.header-panel {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    padding-block: 0.75rem;
+    border-radius: 16px;
+  }
+  .header-panel .brand-logo-wrap {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
 }
 
 @media (min-width: 641px) {
