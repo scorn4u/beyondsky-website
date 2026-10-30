@@ -16,6 +16,7 @@ const NAV_LINKS = [
 
 export default function SterlingGateKineticNav() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); // phone hamburger menu
 
   // Scroll detection for header backdrop blur
   useEffect(() => {
@@ -25,8 +26,23 @@ export default function SterlingGateKineticNav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close the phone menu on Escape, or if the screen grows to desktop width
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e) => e.key === "Escape" && setMenuOpen(false);
+    const mq = window.matchMedia("(min-width: 641px)");
+    const onWide = (e) => e.matches && setMenuOpen(false);
+    window.addEventListener("keydown", onKey);
+    mq.addEventListener("change", onWide);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      mq.removeEventListener("change", onWide);
+    };
+  }, [menuOpen]);
+
   // Logo and "home" take you back to the start of the home page (intro rewound)
   const goHome = (e) => {
+    setMenuOpen(false);
     if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return; // let "open in new tab" work
     e.preventDefault();
     // the video intro handles this itself (and cancels the event); otherwise just go to the top
@@ -36,6 +52,7 @@ export default function SterlingGateKineticNav() {
 
   // Section links finish the intro and scroll to the section (if it exists)
   const goToSection = (e) => {
+    setMenuOpen(false);
     const id = e.currentTarget.getAttribute("href").slice(1);
     if (!document.getElementById(id)) return;
     e.preventDefault();
@@ -49,7 +66,7 @@ export default function SterlingGateKineticNav() {
     <div className="sterling-gate-root">
       <div className={`site-header-wrapper ${isScrolled ? "header-scrolled" : ""}`}>
         <header className="header">
-          <div className="container is--full header-panel">
+          <div className={`container is--full header-panel ${menuOpen ? "is-menu-open" : ""}`}>
             <nav className="nav-row" aria-label="Beyond Sky Navigation">
               {/* Brand Logo */}
               <Link href="/" className="brand-link" aria-label="Beyond Sky home" onClick={goHome}>
@@ -80,7 +97,35 @@ export default function SterlingGateKineticNav() {
                   </li>
                 ))}
               </ul>
+
+              {/* Phones: hamburger button instead of the text links */}
+              <button
+                type="button"
+                className="nav-burger"
+                aria-label={menuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={menuOpen}
+                aria-controls="mobile-nav"
+                onClick={() => setMenuOpen((v) => !v)}
+              >
+                <span aria-hidden="true" />
+                <span aria-hidden="true" />
+              </button>
             </nav>
+
+            <ul className="mobile-nav" id="mobile-nav" hidden={!menuOpen}>
+              {NAV_LINKS.map((link, i) => (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    className="mobile-nav__link"
+                    onClick={link.home ? goHome : goToSection}
+                  >
+                    {link.label}
+                    <span className="mobile-nav__punct">{i < NAV_LINKS.length - 1 ? "," : "."}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
         </header>
       </div>

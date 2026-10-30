@@ -5737,3 +5737,97 @@ a.dir-item:hover {
     padding-left: 0;
   }
 }
+
+/* ===== Phone menu (hamburger) ===== */
+.nav-burger {
+  display: none;
+  pointer-events: auto;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  margin-right: -6px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav-burger span {
+  position: absolute;
+  left: 11px;
+  right: 11px;
+  height: 2px;
+  border-radius: 2px;
+  background: #ffffff;
+  transition: transform 0.25s ease, top 0.25s ease;
+}
+
+.nav-burger span:first-child { top: 17px; }
+.nav-burger span:last-child { top: 25px; }
+
+.is-menu-open .nav-burger span:first-child { top: 21px; transform: rotate(45deg); }
+.is-menu-open .nav-burger span:last-child { top: 21px; transform: rotate(-45deg); }
+
+.nav-burger:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 2px;
+}
+
+.mobile-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem 0 0.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  pointer-events: auto;
+}
+
+.mobile-nav__link {
+  display: block;
+  padding: 0.35rem 0.1rem;
+  font-family: var(--font-main);
+  font-size: 1.9rem;
+  font-weight: 400;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.mobile-nav__link:hover,
+.mobile-nav__link:focus-visible {
+  color: var(--aviation-yellow);
+  outline: none;
+}
+
+.mobile-nav__punct {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+@media (max-width: 640px) {
+  .header-panel .text-nav { display: none; }
+  .nav-burger { display: block; }
+}
+
+@media (min-width: 641px) {
+  .mobile-nav { display: none !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-burger span { transition: none; }
+}
+
+/* ===== Phones: centre the careers copy, like the About section ===== */
+@media (max-width: 860px) {
+  .join-team__copy {
+    align-items: center;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+}
+
+.mobile-nav[hidden] {
+  display: none;
+}
